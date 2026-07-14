@@ -47,7 +47,7 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen" ref={mainRef}>
-      <BackgroundScene />
+      
       <AnimatePresence mode="wait">
         {stage === 'loading' && <LoadingScreen key="loading" />}
         {stage === 'intro' && <RoyalIntro key="intro" onProceed={() => handleProceed('gate')} />}
