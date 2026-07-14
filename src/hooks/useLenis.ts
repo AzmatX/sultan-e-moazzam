@@ -1,6 +1,6 @@
 'use client';
 import { useEffect } from 'react';
-import Lenis from '@studio-freight/lenis';
+import Lenis from 'lenis';   // instead of '@studio-freight/lenis'
 
 export function useLenis() {
   useEffect(() => {
