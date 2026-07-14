@@ -12,7 +12,7 @@ import HallOfChats from '@/components/HallOfChats';
 import GiftChamber from '@/components/GiftChamber';
 import HallOfOath from '@/components/HallOfOath';
 import RoyalFarewell from '@/components/RoyalFarewell';
-import BackgroundScene from '@/components/BackgroundScene';
+
 
 type Stage =
   | 'loading'

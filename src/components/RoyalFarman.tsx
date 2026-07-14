@@ -1,24 +1,23 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import Typed from 'typed.js';
 import { CONFIG } from '@/data/config';
 
 export default function RoyalFarman({ onNext }: { onNext: () => void }) {
-  const typedRef = useRef<HTMLSpanElement>(null);
+  const [displayText, setDisplayText] = useState('');
+  const fullText = CONFIG.farmanText;
 
   useEffect(() => {
-    if (typedRef.current) {
-      const typed = new Typed(typedRef.current, {
-        strings: [CONFIG.farmanText],
-        typeSpeed: 35,
-        showCursor: true,
-        cursorChar: '|',
-        onComplete: () => {},
-      });
-      return () => typed.destroy();
-    }
-  }, []);
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayText(fullText.slice(0, index + 1));
+      index++;
+      if (index >= fullText.length) {
+        clearInterval(interval);
+      }
+    }, 35);
+    return () => clearInterval(interval);
+  }, [fullText]);
 
   return (
     <motion.section
@@ -43,7 +42,8 @@ export default function RoyalFarman({ onNext }: { onNext: () => void }) {
             ,
           </p>
           <div className="min-h-[6rem] text-gray-700 leading-relaxed">
-            <span ref={typedRef}></span>
+            {displayText}
+            <span className="animate-pulse">|</span>
           </div>
           <p className="text-right text-gold-dark italic mt-6">
             Ba-Khuda,
